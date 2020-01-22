@@ -114,7 +114,7 @@ VOID MainDumper(HANDLE hProcess, MODULE32 Client, MODULE32 Engine)
 	CHAR szOut[SD_OUTPUT_FILESIZE] = { 0 };
 	DumpTime(szOut);
 
-	DWORD dwLocalPayer = DumpOffset(pszIn, szOut, Client, "dwLocalPayer", EXP("\x8D\x34\x85\xAA\xAA\xAA\xAA\x89\x15\xAA\xAA\xAA\xAA\x8B\x41\x08\x8B\x48\x04\x83\xF9\xFF"), 0xAA, 0x3, 0x4, TRUE, TRUE);
+	DWORD dwLocalPlayer = DumpOffset(pszIn, szOut, Client, "dwLocalPlayer", EXP("\x8D\x34\x85\xAA\xAA\xAA\xAA\x89\x15\xAA\xAA\xAA\xAA\x8B\x41\x08\x8B\x48\x04\x83\xF9\xFF"), 0xAA, 0x3, 0x4, TRUE, TRUE);
 	DWORD dwEntityList = DumpOffset(pszIn, szOut, Client, "dwEntityList", EXP("\xBB\xAA\xAA\xAA\xAA\x83\xFF\x01\x0F\x8C\xAA\xAA\xAA\xAA\x3B\xF8"), 0xAA, 0x1, 0x0, TRUE, TRUE);
 	DWORD dwClientState = DumpOffset(pszIn, szOut, Engine, "dwClientState", EXP("\xA1\xAA\xAA\xAA\xAA\x33\xD2\x6A\x00\x6A\x00\x33\xC9\x89\xB0"), 0xAA, 0x1, 0x0, TRUE, TRUE);
 	DWORD dwPlayerResource = DumpOffset(pszIn, szOut, Client, "dwPlayerResource", EXP("\x8B\x3D\xAA\xAA\xAA\xAA\x85\xFF\x0F\x84\xAA\xAA\xAA\xAA\x81\xC7"), 0xAA, 0x2, 0x0, TRUE, TRUE);
@@ -129,7 +129,7 @@ VOID MainDumper(HANDLE hProcess, MODULE32 Client, MODULE32 Engine)
 	DWORD m_dwPlayerInfo = DumpOffset(pszIn, szOut, Engine, "m_dwPlayerInfo", EXP("\x8B\x89\xAA\xAA\xAA\xAA\x85\xC9\x0F\x84\xAA\xAA\xAA\xAA\x8B\x01"), 0xAA, 0x2, 0x0, TRUE, FALSE);
 	DWORD m_dwViewAngles = DumpOffset(pszIn, szOut, Engine, "m_dwViewAngles", EXP("\xF3\x0F\x11\x80\xAA\xAA\xAA\xAA\xD9\x46\x04\xD9\x05\xAA\xAA\xAA\xAA"), 0xAA, 0x4, 0x0, TRUE, FALSE);
 	DWORD m_szMapPath = DumpOffset(pszIn, szOut, Engine, "m_szMapPath", EXP("\x05\xAA\xAA\xAA\xAA\xC3\xCC\xCC\xCC\xCC\xCC\xCC\xCC\x80\x3D"), 0xAA, 0x1, 0x0, TRUE, FALSE);
-	DWORD m_iLocalPayer = DumpOffset(pszIn, szOut, Engine, "m_iLocalPayer", EXP("\x8B\x80\xAA\xAA\xAA\xAA\x40\xC3"), 0xAA, 0x2, 0x0, TRUE, FALSE);
+	DWORD m_iLocalPlayer = DumpOffset(pszIn, szOut, Engine, "m_iLocalPlayer", EXP("\x8B\x80\xAA\xAA\xAA\xAA\x40\xC3"), 0xAA, 0x2, 0x0, TRUE, FALSE);
 	DWORD m_dwInGame = DumpOffset(pszIn, szOut, Engine, "m_dwInGame", EXP("\x83\xB8\xAA\xAA\xAA\xAA\x06\x0F\x94\xC0\xC3"), 0xAA, 0x2, 0x0, TRUE, FALSE);
 
 	DumpSpace(szOut);
