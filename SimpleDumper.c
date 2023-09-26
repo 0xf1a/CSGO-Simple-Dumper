@@ -127,7 +127,7 @@ VOID MainDumper(HANDLE hProcess, MODULE32 Client, MODULE32 Engine)
 	DumpSpace(szOut);
 
 	DWORD m_dwPlayerInfo = DumpOffset(pszIn, szOut, Engine, "m_dwPlayerInfo", EXP("\x8B\x89\xAA\xAA\xAA\xAA\x85\xC9\x0F\x84\xAA\xAA\xAA\xAA\x8B\x01"), 0xAA, 0x2, 0x0, TRUE, FALSE);
-	DWORD m_dwViewAngles = DumpOffset(pszIn, szOut, Engine, "m_dwViewAngles", EXP("\xF3\x0F\x11\x80\xAA\xAA\xAA\xAA\xD9\x46\x04\xD9\x05\xAA\xAA\xAA\xAA"), 0xAA, 0x4, 0x0, TRUE, FALSE);
+	DWORD m_dwViewAngles = DumpOffset(pszIn, szOut, Engine, "m_dwViewAngles", EXP("\xF3\x0F\x11\x86\xAA\xAA\xAA\xAA\xF3\x0F\x10\x44\x24\xAA\xF3\x0F\x11\x86"), 0xAA, 0x4, 0x0, TRUE, FALSE);
 	DWORD m_szMapPath = DumpOffset(pszIn, szOut, Engine, "m_szMapPath", EXP("\x05\xAA\xAA\xAA\xAA\xC3\xCC\xCC\xCC\xCC\xCC\xCC\xCC\x80\x3D"), 0xAA, 0x1, 0x0, TRUE, FALSE);
 	DWORD m_iLocalPlayer = DumpOffset(pszIn, szOut, Engine, "m_iLocalPlayer", EXP("\x8B\x80\xAA\xAA\xAA\xAA\x40\xC3"), 0xAA, 0x2, 0x0, TRUE, FALSE);
 	DWORD m_dwInGame = DumpOffset(pszIn, szOut, Engine, "m_dwInGame", EXP("\x83\xB8\xAA\xAA\xAA\xAA\x06\x0F\x94\xC0\xC3"), 0xAA, 0x2, 0x0, TRUE, FALSE);
@@ -198,16 +198,16 @@ int main()
 		return 1;
 	}
 
-	Client.dwBase = GetModuleBaseAddress(dwProcessId, _T("client_panorama.dll"));
-	printf("[+] client_panorama.dll base: 0x%x\n", Client.dwBase);
+	Client.dwBase = GetModuleBaseAddress(dwProcessId, _T("client.dll"));
+	printf("[+] client.dll base: 0x%x\n", Client.dwBase);
 
-	Client.dwSize = GetModuleSize(dwProcessId, _T("client_panorama.dll"));
-	printf("[+] client_panorama.dll size: 0x%x\n", Client.dwSize);
+	Client.dwSize = GetModuleSize(dwProcessId, _T("client.dll"));
+	printf("[+] client.dll size: 0x%x\n", Client.dwSize);
 
 	Client.pbBuffer = (PBYTE)malloc(Client.dwSize);
 	if (!Client.pbBuffer || !ReadMemory(hProcess, Client.dwBase, Client.pbBuffer, Client.dwSize))
 	{
-		printf("[!] Error dumping client_panorama.dll!\n");
+		printf("[!] Error dumping client.dll!\n");
 		goto cleanup;
 	}
 
